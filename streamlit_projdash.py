@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title="Project Command Center", layout="wide")
 
@@ -56,4 +57,48 @@ for _, row in df.iterrows():
     st.markdown(f"**{row['Project']}** {status}")
 
     st.progress(progress / 100)
+
+
+st.subheader("🏆 Project Progress – Ranked View")
+
+# Sort projects by progress
+df_sorted = df.sort_values(by="Progress", ascending=True)
+
+# Color logic
+def status_color(p):
+    if p >= 70:
+        return "🟢 Near Completion"
+    elif p >= 40:
+        return "🟡 In Progress"
+    else:
+        return "🔴 At Risk"
+
+df_sorted["Status"] = df_sorted["Progress"].apply(status_color)
+
+fig = px.bar(
+    df_sorted,
+    x="Progress",
+    y="Project",
+    orientation="h",
+    color="Status",
+    text="Progress",
+    color_discrete_map={
+        "🟢 Near Completion": "green",
+        "🟡 In Progress": "orange",
+        "🔴 At Risk": "red"
+    },
+    title="Project Completion Leaderboard"
+)
+
+fig.update_layout(
+    xaxis_title="Completion (%)",
+    yaxis_title="",
+    showlegend=True,
+    height=500
+)
+
+fig.update_traces(texttemplate="%{text}%", textposition="outside")
+
+st.plotly_chart(fig, use_container_width=True) 
+
 
