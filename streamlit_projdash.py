@@ -10,16 +10,18 @@ data = {
     "Project": [
         "CRM Automation",
         "Excel Insight Engine",
-        "Monitoring Agent",
+        "Autonmous Agent",
         "RAG Pipeline",
         "Complaint Dashboard",
         "IoT Health Monitor",
         "Email Automation",
-        "Log Analyzer",
-        "AI Reporting Tool",
-        "Agent Orchestrator"
+        "Snmp And Python Router TroubleShooting",
+        "Excel to Outlook By Python",
+        "Space Data Analysis",
+        "Laptop Replacement App"
+        "Reddit Streamlit Dasboard"
     ],
-    "Progress": [60, 80, 40, 55, 70, 30, 90, 45, 65, 50]
+    "Progress": [60, 80, 20, 40, 70, 30, 70, 45, 25, 15,70,75]
 }
 
 df = pd.DataFrame(data)
@@ -52,4 +54,5 @@ for _, row in df.iterrows():
         status = "🔴"
 
     st.markdown(f"**{row['Project']}** {status}")
+
     st.progress(progress / 100)
