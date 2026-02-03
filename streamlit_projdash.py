@@ -18,7 +18,7 @@ data = {
         "Snmp And Python Router TroubleShooting",
         "Excel to Outlook By Python",
         "Space Data Analysis",
-        "Laptop Replacement App"
+        "Laptop Replacement App",
         "Reddit Streamlit Dasboard"
     ],
     "Progress": [60, 80, 20, 40, 70, 30, 70, 45, 25, 15,70,75]
@@ -56,3 +56,4 @@ for _, row in df.iterrows():
     st.markdown(f"**{row['Project']}** {status}")
 
     st.progress(progress / 100)
+
